@@ -81,10 +81,21 @@ function Step1({
   );
 }
 function Step2({ period, cambiaPeriodo, scelgiPiano, planActive }) {
+  let imgPlans = null;
+
   return (
     <div className="container-body-step-2">
       <div className="riga-alta-step-2">
         {plans.map((obj) => {
+          if (obj.type === "arcade") {
+            imgPlans = iconArcade;
+          } else if (obj.type === "advanced") {
+            imgPlans = iconAdvanced;
+          } else if (obj.type === "pro") {
+            imgPlans = iconPro;
+          } else {
+            imgPlans = iconArcade;
+          }
           return (
             <div
               key={obj.id}
@@ -96,7 +107,7 @@ function Step2({ period, cambiaPeriodo, scelgiPiano, planActive }) {
                 (planActive === obj.type ? "card-plan-active" : null)
               }
             >
-              <img src={obj.img} alt="" />
+              <img src={imgPlans} alt="" />
               <div className="card-plan-box-testi">
                 <h3 className="maiusc">{obj.type}</h3>
                 <p className="card-plan-box-testi-price">
